@@ -9,6 +9,13 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+ReflectionLaser/[Ll]ibrary/
+ReflectionLaser/[Tt]emp/
+ReflectionLaser/[Oo]bj/
+ReflectionLaser/[Bb]uild/
+ReflectionLaser/[Bb]uilds/
+ReflectionLaser/[Ll]ogs/
+ReflectionLaser/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -70,3 +77,4 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+ReflectionLaser/.vsconfig
