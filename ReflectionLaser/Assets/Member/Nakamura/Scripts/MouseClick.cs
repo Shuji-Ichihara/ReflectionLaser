@@ -112,9 +112,8 @@ public class MouseClick : MonoBehaviour
     {
         //  startPointObject‚ÌˆÊ’u‚ğæ“¾
         bulletPoint = startPointObject.transform.localPosition;
+        // ’e‚Ì¶¬
         Instantiate(bulletObject, bulletPoint, Quaternion.identity);
-
-
     }
 
     /// <summary>

@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
     private bool bOnceLog;
 
 
+    //¶¬‚ÉEnum‚ğƒZƒŒƒNƒg‚Å‚«‚é‚æ‚¤‚É‰¼‚Å
     public void Initialize(DIRECTION vECTOR)
     {
         E_DIRECTION = vECTOR;
@@ -41,6 +42,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ’e‚ÌˆÚ“®
         switch(E_DIRECTION)
         {
             case DIRECTION.UP:
