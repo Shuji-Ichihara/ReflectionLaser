@@ -10,8 +10,8 @@ public class Map : MonoBehaviour
     private string[] textData;
     private string[,] dungeonMap;
 
-    private int tateNumber; // s”‚É‘Š“–
-    private int yokoNumber; // —ñ”‚É‘Š“–
+    private int tateNumber; // ï¿½sï¿½ï¿½ï¿½É‘ï¿½ï¿½ï¿½
+    private int yokoNumber; // ï¿½ñ”‚É‘ï¿½ï¿½ï¿½
 
     [SerializeField]
     private GameObject floorPrefab;
@@ -24,16 +24,16 @@ public class Map : MonoBehaviour
 
     private void Start()
     {
-        string textLines = textFile.text; // ƒeƒLƒXƒg‚Ì‘S‘Ìƒf[ƒ^‚Ì‘ã“ü
+        string textLines = textFile.text; // ï¿½eï¿½Lï¿½Xï¿½gï¿½Ì‘Sï¿½Ìƒfï¿½[ï¿½^ï¿½Ì‘ï¿½ï¿½
 
-        // ‰üs‚Åƒf[ƒ^‚ğ•ªŠ„‚µ‚Ä”z—ñ‚É‘ã“ü
+        // ï¿½ï¿½ï¿½sï¿½Åƒfï¿½[ï¿½^ï¿½ğ•ªŠï¿½ï¿½ï¿½ï¿½Ä”zï¿½ï¿½É‘ï¿½ï¿½
         textData = textLines.Split('\n');
 
-        // s”‚Æ—ñ”‚Ìæ“¾
+        // ï¿½sï¿½ï¿½ï¿½Æ—ñ”‚Ìæ“¾
         yokoNumber = textData[0].Split(',').Length;
         tateNumber = textData.Length;
 
-        // ‚QŸŒ³”z—ñ‚Ì’è‹`
+        // ï¿½Qï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½Ì’ï¿½`
         dungeonMap = new string[tateNumber, yokoNumber];
 
         for (int i = 0; i < tateNumber; i++)
