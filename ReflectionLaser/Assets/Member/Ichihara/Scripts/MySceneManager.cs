@@ -1,39 +1,40 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ƒV[ƒ“‚Ìí—Ş
+/// ã‚·ãƒ¼ãƒ³ã®ç¨®é¡
 /// </summary>
 public enum SceneType
 {
+    // TODO: è¡¨ç¤ºã™ã‚‹ã‚·ãƒ¼ãƒ³ã®æ•°ã«ã‚ˆã£ã¦å¢—æ¸›ã™ã‚‹
     Title,
     StageSelect,
-    Game,
+    GameScene1,
     Result,
 }
 
 public class MySceneManager : SingletonMonoBehaviour<MySceneManager>
 {
-    // “Ç‚İ‚ŞƒV[ƒ“‚Ì–¼Ì‚ğŠi”[‚·‚é
-    // ”z—ñ‚Ì index ‚ªá‚¢‡‚É“Ç‚İ‚Ü‚ê‚é
-    [Header("“Ç‚İ‚ŞƒV[ƒ“‚Ì–¼Ì‚ğŠi”[‚·‚é\n”z—ñ‚Ì index ‚ªá‚¢‡‚É“Ç‚İ‚Ü‚ê‚é")]
+    // èª­ã¿è¾¼ã‚€ã‚·ãƒ¼ãƒ³ã®åç§°ã‚’æ ¼ç´ã™ã‚‹
+    // é…åˆ—ã® index ãŒè‹¥ã„é †ã«èª­ã¿è¾¼ã¾ã‚Œã‚‹
+    [Header("èª­ã¿è¾¼ã‚€ã‚·ãƒ¼ãƒ³ã®åç§°ã‚’æ ¼ç´ã™ã‚‹\né…åˆ—ã® index ãŒè‹¥ã„é †ã«èª­ã¿è¾¼ã¾ã‚Œã‚‹")]
     [SerializeField]
     private string[] _sceneNameList = { };
-    // ƒV[ƒ“‚Ìí—Ş‚ÆƒV[ƒ“‚Ì–¼‘O‚ğ•R‚Ã‚¯‚½˜A‘z”z—ñ
+    // ã‚·ãƒ¼ãƒ³ã®ç¨®é¡ã¨ã‚·ãƒ¼ãƒ³ã®åå‰ã‚’ç´ã¥ã‘ãŸé€£æƒ³é…åˆ—
     private Dictionary<SceneType, string> _loadScenes = new Dictionary<SceneType, string>()
             {
                 { SceneType.Title,       string.Empty},
                 { SceneType.StageSelect, string.Empty},
-                { SceneType.Game,        string.Empty},
+                { SceneType.GameScene1,  string.Empty},
                 { SceneType.Result,      string.Empty},
             };
 
     protected override void Awake()
     {
         base.Awake();
-        // ƒV[ƒ“‚Ìí—Ş‚Æ–¼‘O‚ğ•R‚Ã‚¯‚é
+        // ã‚·ãƒ¼ãƒ³ã®ç¨®é¡ã¨åå‰ã‚’ç´ã¥ã‘ã‚‹
         for (int i = 0; i < _sceneNameList.Length; i++)
         {
             _loadScenes[(SceneType)i] = _sceneNameList[i];
@@ -43,22 +44,29 @@ public class MySceneManager : SingletonMonoBehaviour<MySceneManager>
 
     private void Update()
     {
-        // ƒeƒXƒg—pƒXƒNƒŠƒvƒg
+        // ãƒ†ã‚¹ãƒˆç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
         if (Input.GetKeyDown(KeyCode.Q))
             LoadSceneRap(SceneType.Title);
         if (Input.GetKeyDown(KeyCode.W))
             LoadSceneRap(SceneType.StageSelect);
-        if (Input.GetKeyDown(KeyCode.D))
-            LoadSceneRap(SceneType.Game);
+        if (Input.GetKeyDown(KeyCode.E))
+            LoadSceneRap(SceneType.GameScene1);
         if (Input.GetKeyDown(KeyCode.R))
             LoadSceneRap(SceneType.Result);
+        // ã‚²ãƒ¼ãƒ çµ‚äº†
+        if (Input.GetKeyDown(KeyCode.Escape))
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();            
+#endif
     }
 
     /// <summary>
-    /// SceneManager.LoadScene ‚Éˆø”‚ğ—^‚¦Aƒ‰ƒbƒv‚µ‚½ŠÖ”
-    /// ƒV[ƒ“‚ğ“Ç‚İ‚Şƒ^ƒCƒ~ƒ“ƒO‚Å‚±‚ÌŠÖ”‚ğŒÄ‚Ño‚·
+    /// SceneManager.LoadScene ã«å¼•æ•°ã‚’ä¸ãˆã€ãƒ©ãƒƒãƒ—ã—ãŸé–¢æ•°
+    /// ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã‚€ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã™
     /// </summary>
-    /// <param name="type">“Ç‚İ‚ŞƒV[ƒ“‚Ìí—Ş</param>
+    /// <param name="type">èª­ã¿è¾¼ã‚€ã‚·ãƒ¼ãƒ³ã®ç¨®é¡</param>
     public void LoadSceneRap(SceneType type)
     {
         var sceneName = _loadScenes[type];
