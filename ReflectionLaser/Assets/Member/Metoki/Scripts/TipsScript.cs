@@ -6,16 +6,15 @@ public class TipsScript : MonoBehaviour
 {
     [SerializeField]
     private Canvas _canvas;
-    void ONClickButton()
+    public void OpenTurtrial()
     {
-           _canvas.enabled = true;
+        //‚ ‚»‚Ñ‚©‚½‚ðŠJ‚­
+        _canvas.enabled = true;
     }
 
-    void Update()
+    public void CloseTurtrial()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            _canvas.enabled = false;
-        }    
+        //‚ ‚»‚Ñ‚©‚½‚ð•Â‚¶‚é
+        _canvas.enabled = false;
     }
 }
