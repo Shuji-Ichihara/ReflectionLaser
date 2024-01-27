@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class FadeTransitionController : SingletonMonoBehaviour<FadeTransitionController>
+public class FadeController : SingletonMonoBehaviour<FadeController>
 {
     [SerializeField]
     private Canvas _fadeCanvas = null;
@@ -22,32 +22,32 @@ public class FadeTransitionController : SingletonMonoBehaviour<FadeTransitionCon
     }
 
     /// <summary>
-    /// FadeInTransition ‚ğŒÄ‚Ño‚·ŠÖ”
+    /// FadeInTransition ã‚’å‘¼ã³å‡ºã™é–¢æ•°
     /// </summary>
-    /// <param name="fadeTime">ƒtƒF[ƒhˆ—‚ÉŠ|‚¯‚éŠÔ</param>
+    /// <param name="fadeTime">ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã«æ›ã‘ã‚‹æ™‚é–“</param>
     public void CallFadeInTransition(float fadeTime = 0f)
     {
-        // O€‰‰Zq‚ğ—p‚¢‚ÄAŠO•”‚©‚çƒtƒF[ƒh‚Ì•b”‚ğw’è‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+        // ä¸‰é …æ¼”ç®—å­ã‚’ç”¨ã„ã¦ã€å¤–éƒ¨ã‹ã‚‰ãƒ•ã‚§ãƒ¼ãƒ‰ã®ç§’æ•°ã‚’æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
         fadeTime = fadeTime <= 0f ? _defaultFadeTime : fadeTime;
         StartCoroutine(FadeInTransition(_fadeMaterial, fadeTime));
     }
 
     /// <summary>
-    /// FadeOutTransition ‚ğŒÄ‚Ño‚·ŠÖ”
+    /// FadeOutTransition ã‚’å‘¼ã³å‡ºã™é–¢æ•°
     /// </summary>
-    /// <param name="fadeTime">ƒtƒF[ƒhˆ—‚ÉŠ|‚¯‚éŠÔ</param>
+    /// <param name="fadeTime">ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã«æ›ã‘ã‚‹æ™‚é–“</param>
     public void CallFadeOutTransition(float fadeTime = 0f)
     {
-        // O€‰‰Zq‚ğ—p‚¢‚ÄAŠO•”‚©‚çƒtƒF[ƒh‚Ì•b”‚ğw’è‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+        // ä¸‰é …æ¼”ç®—å­ã‚’ç”¨ã„ã¦ã€å¤–éƒ¨ã‹ã‚‰ãƒ•ã‚§ãƒ¼ãƒ‰ã®ç§’æ•°ã‚’æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
         fadeTime = fadeTime <= 0f ? _defaultFadeTime : fadeTime;
         StartCoroutine(FadeOutTransition(_fadeMaterial, fadeTime));
     }
 
     /// <summary>
-    /// ƒtƒF[ƒhƒCƒ“ˆ—
+    /// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‡¦ç†
     /// </summary>
-    /// <param name="material">ƒ‹[ƒ‹‰æ‘œ‚ğ“K—p‚µ‚½ƒ}ƒeƒŠƒAƒ‹</param>
-    /// <param name="fadeTime">ƒtƒF[ƒhˆ—‚É‚©‚¯‚é•b”</param>
+    /// <param name="material">ãƒ«ãƒ¼ãƒ«ç”»åƒã‚’é©ç”¨ã—ãŸãƒãƒ†ãƒªã‚¢ãƒ«</param>
+    /// <param name="fadeTime">ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã«ã‹ã‘ã‚‹ç§’æ•°</param>
     /// <returns></returns>
     private IEnumerator FadeInTransition(Material material, float fadeTime)
     {
@@ -64,10 +64,10 @@ public class FadeTransitionController : SingletonMonoBehaviour<FadeTransitionCon
     }
 
     /// <summary>
-    /// ƒtƒF[ƒhƒAƒEƒgˆ—
+    /// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†
     /// </summary>
-    /// <param name="material">ƒ‹[ƒ‹‰æ‘œ‚ğ“K—p‚µ‚½ƒ}ƒeƒŠƒAƒ‹</param>
-    /// <param name="fadeTime">ƒtƒF[ƒhˆ—‚É‚©‚¯‚é•b”</param>
+    /// <param name="material">ãƒ«ãƒ¼ãƒ«ç”»åƒã‚’é©ç”¨ã—ãŸãƒãƒ†ãƒªã‚¢ãƒ«</param>
+    /// <param name="fadeTime">ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã«ã‹ã‘ã‚‹ç§’æ•°</param>
     /// <returns></returns>
     private IEnumerator FadeOutTransition(Material material, float fadeTime)
     {
