@@ -6,13 +6,25 @@ using UnityEngine.Events;
 public class MouseClick : MonoBehaviour
 {
 
+    [SerializeField,Header("スタート地点")]
+    GameObject startPointObject;
+
+    [SerializeField,Header("弾")]
+    GameObject bulletObject;
+
     // 壁を持っているか
-    private bool bHaswall;
+    private bool bHaswall=false;
+
+    // 右クリックを押したら
+    private bool bPushRight=false;
+
 
     //持ち上げる壁
     private GameObject liftObject;
 
-    private Vector3 screenPoint;
+    //弾の位置
+    private Vector3 bulletPoint;
+
     private Vector3 offset;
 
     // UnityEventっていうデリゲートっぽいやつらしい
@@ -37,6 +49,7 @@ public class MouseClick : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+           // this.offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
             if (bHaswall)
             {
                 // 持ち上げてる場合おろす
@@ -54,14 +67,19 @@ public class MouseClick : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            // デリゲートの呼び出しでビーム出す
-            onRightPushEvent.Invoke();
+            //一回でも右クリ押したら押せない（）
+            if(bPushRight)
+            {
+                return;
+            }
+            RightMouseEvent();
             Debug.Log("右クリック");
+            bPushRight = true;
         }
     }
 
     /// <summary>
-    ///  壁を持ち上げる関数
+    ///  左クリックで壁を持ち上げる関数
     /// </summary>
     private void ClickLiftObject()
     {
@@ -81,8 +99,21 @@ public class MouseClick : MonoBehaviour
         if (hit2D.transform.gameObject.CompareTag("Wall"))
         {
             liftObject = hit2D.transform.gameObject;
+           
             bHaswall = true;
         }
+
+    }
+
+    /// <summary>
+    /// 右クリックで弾を発射する
+    /// </summary>
+    private void RightMouseEvent()
+    {
+        //  startPointObjectの位置を取得
+        bulletPoint = startPointObject.transform.localPosition;
+        Instantiate(bulletObject, bulletPoint, Quaternion.identity);
+
 
     }
 
@@ -93,7 +124,7 @@ public class MouseClick : MonoBehaviour
     {
         Vector3 currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
-        liftObject.transform.position = new Vector3(currentPosition.x,currentPosition.y, 0);
+        liftObject.transform.position = new Vector3(currentPosition.x,currentPosition.y, 0)+this.offset;
         Debug.Log("ooooo");
     }
 }
