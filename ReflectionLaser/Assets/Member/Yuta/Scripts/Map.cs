@@ -47,15 +47,15 @@ public class Map : MonoBehaviour
                     switch (dungeonMap[i, j])
                     {
                         case "1":
-                            Instantiate(floorPrefab, new Vector2(-4.5f + j, -3f + i), Quaternion.identity);
+                            Instantiate(floorPrefab, new Vector2(-4.5f + j, -1.5f + i), Quaternion.identity);
                             break;
 
                         case "2":
-                            Instantiate(wallPrefab, new Vector2(-4.5f + j, -3f + i), Quaternion.identity);
+                            Instantiate(wallPrefab, new Vector2(-4.5f + j, -1.5f + i), Quaternion.identity);
                             break;
 
                         case "3":
-                            Instantiate(goalPrefab, new Vector2(-4.5f + j, -3f + i), Quaternion.identity);
+                            Instantiate(goalPrefab, new Vector2(-4.5f + j, -1.5f + i), Quaternion.identity);
                             break;
                     }
                 }
