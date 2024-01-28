@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - GameManger
+  - Fade
   layers:
   - Default
   - TransparentFX
