@@ -5,16 +5,31 @@ using UnityEngine;
 public class TipsScript : MonoBehaviour
 {
     [SerializeField]
-    private Canvas _canvas;
+    private Canvas _turtrialCanvas;
+    [SerializeField]
+    private Canvas _sousaCanvas;
     public void OpenTurtrial()
     {
         //‚ ‚»‚Ñ‚©‚½‚ðŠJ‚­
-        _canvas.enabled = true;
+        _turtrialCanvas.enabled = true;
     }
 
     public void CloseTurtrial()
     {
         //‚ ‚»‚Ñ‚©‚½‚ð•Â‚¶‚é
-        _canvas.enabled = false;
+        _turtrialCanvas.enabled = false;
+    }
+
+    public void OpenSousaCanvas()
+    {
+        //‚ ‚»‚Ñ‚©‚½‚ðŠJ‚­
+        _turtrialCanvas.enabled = false;
+        _sousaCanvas.enabled = true;
+    }
+    public void CloseSousaCanvas()
+    {
+        //‚ ‚»‚Ñ‚©‚½‚ðŠJ‚­
+        _turtrialCanvas.enabled = true;
+        _sousaCanvas.enabled = false;
     }
 }
