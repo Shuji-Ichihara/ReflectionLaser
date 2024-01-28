@@ -11,6 +11,9 @@ public class FadeController : SingletonMonoBehaviour<FadeController>
     // フェード処理に使用するマテリアル
     [SerializeField]
     private Material _fadeMaterial = null;
+    // フェードに使用するマテリアルの色
+    [SerializeField]
+    private Color _defaultMaterialColor = Color.black;
     // フェード処理に掛ける時間
     [SerializeField]
     private float _defaultFadeTime = 2f;
@@ -27,22 +30,30 @@ public class FadeController : SingletonMonoBehaviour<FadeController>
     /// FadeInTransition を呼び出す関数
     /// </summary>
     /// <param name="fadeTime">フェード処理に掛ける時間</param>
-    public async UniTask CallFadeInTransition(float fadeTime = 0f, CancellationTokenSource cts = default)
+    public async UniTask CallFadeInTransition(float fadeTime = 0f,
+                                              Color fadeColor = default,
+                                            CancellationTokenSource cts = default)
     {
         // 三項演算子を用いて、外部からフェードの秒数を指定できるようにした
         fadeTime = fadeTime <= 0f ? _defaultFadeTime : fadeTime;
-        await FadeInTransition(_fadeMaterial, fadeTime, cts);
+        // 上記と同様に、フェード処理用マテリアルの色を設定できるようにした。
+        fadeColor = fadeColor == default ? _defaultMaterialColor : fadeColor;
+        await FadeInTransition(_fadeMaterial, fadeTime, fadeColor, cts);
     }
 
     /// <summary>
     /// FadeOutTransition を呼び出す関数
     /// </summary>
     /// <param name="fadeTime">フェード処理に掛ける時間</param>
-    private async UniTask CallFadeOutTransition(float fadeTime = 0f, CancellationTokenSource cts = default)
+    private async UniTask CallFadeOutTransition(float fadeTime = 0f,
+                                                Color fadeColor = default,
+                                                CancellationTokenSource cts = default)
     {
-        // 三項演算子を用いて、外部からフェードの秒数を指定できるようにした
+        // 三項演算子を用いて、外部からフェードの秒数を設定できるようにした
         fadeTime = fadeTime <= 0f ? _defaultFadeTime : fadeTime;
-        await FadeOutTransition(_fadeMaterial, fadeTime, cts);
+        // 上記と同様に、フェード処理用マテリアルの色を設定できるようにした。
+        fadeColor = fadeColor == default ? _defaultMaterialColor : fadeColor;
+        await FadeOutTransition(_fadeMaterial, fadeTime, fadeColor, cts);
     }
 
     /// <summary>
@@ -51,9 +62,13 @@ public class FadeController : SingletonMonoBehaviour<FadeController>
     /// <param name="material">ルール画像を適用したマテリアル</param>
     /// <param name="fadeTime">フェード処理にかける秒数</param>
     /// <returns></returns>
-    private async UniTask FadeInTransition(Material material, float fadeTime, CancellationTokenSource cts = default)
+    private async UniTask FadeInTransition(Material material,
+                                           float fadeTime,
+                                           Color fadeColor,
+                                           CancellationTokenSource cts = default)
     {
         var image = _fadeCanvas.GetComponentInChildren<Image>();
+        material.color = fadeColor;
         image.material = material;
         float currentTime = 0f;
         while (currentTime < fadeTime)
@@ -73,9 +88,13 @@ public class FadeController : SingletonMonoBehaviour<FadeController>
     /// <param name="material">ルール画像を適用したマテリアル</param>
     /// <param name="fadeTime">フェード処理にかける秒数</param>
     /// <returns></returns>
-    private async UniTask FadeOutTransition(Material material, float fadeTime, CancellationTokenSource cts = default)
+    private async UniTask FadeOutTransition(Material material,
+                                            float fadeTime,
+                                            Color fadeColor,
+                                            CancellationTokenSource cts = default)
     {
         var image = _fadeCanvas.GetComponentInChildren<Image>();
+        material.color = fadeColor;
         image.material = material;
         float currentTime = 0f;
         while (currentTime < fadeTime)
@@ -97,6 +116,7 @@ public class FadeController : SingletonMonoBehaviour<FadeController>
     public void InstantiateCanvas(UnityEngine.SceneManagement.Scene scene,
                                   UnityEngine.SceneManagement.LoadSceneMode mode)
     {
+        // Fade タグを持つゲームオブジェクトを破棄する
         var canvas = GameObject.FindGameObjectWithTag(_canvasTagName);
         if (canvas != null)
             Destroy(canvas);
