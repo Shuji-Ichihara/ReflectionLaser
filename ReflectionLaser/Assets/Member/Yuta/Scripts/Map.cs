@@ -19,6 +19,8 @@ public class Map : MonoBehaviour
     private GameObject wallPrefab;
     [SerializeField]
     private GameObject goalPrefab;
+    [SerializeField]
+    private GameObject startPrefab;
 
     private void Start()
     {
@@ -56,6 +58,10 @@ public class Map : MonoBehaviour
 
                         case "3":
                             Instantiate(goalPrefab, new Vector2(-4.5f + j, -1.5f + i), Quaternion.identity);
+                            break;
+
+                        case "4":
+                            Instantiate(startPrefab, new Vector2(-4.5f + j, -1.5f + i), Quaternion.identity);
                             break;
                     }
                 }

@@ -169,6 +169,7 @@ MonoBehaviour:
   floorPrefab: {fileID: 5530386395988374652, guid: 9ed755f9a9a227f49b7d8e80559cf274, type: 3}
   wallPrefab: {fileID: 3737195590955365001, guid: 41045ad1df49ef544ae5b64a2b0fb4cb, type: 3}
   goalPrefab: {fileID: 3461070932371380039, guid: 3e2a7ee8c40f83f42a5a5f46374cf60e, type: 3}
+  startPrefab: {fileID: 3737195590955365001, guid: d35d274c02d77d64f846a932e1fd82b0, type: 3}
 --- !u!4 &576886412
 Transform:
   m_ObjectHideFlags: 0
