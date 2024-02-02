@@ -15,9 +15,12 @@ public class laserStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 aa = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 0.02f);
         if (Input.GetMouseButtonDown(1))
         {
-            Instantiate(LaserBall, this.transform.position, Quaternion.identity);
+            Vector3 at = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 0.01f);
+            this.transform.position = aa;
+            Instantiate(LaserBall, at, Quaternion.identity);
         }
     }
 }
