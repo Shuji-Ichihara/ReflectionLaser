@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - Mira
+  - MiraUe
+  - MiraSita
   layers:
   - Default
   - TransparentFX
