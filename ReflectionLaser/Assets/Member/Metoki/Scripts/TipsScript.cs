@@ -18,6 +18,7 @@ public class TipsScript : MonoBehaviour
     {
         //‚ ‚»‚Ñ‚©‚½‚ð•Â‚¶‚é
         _turtrialCanvas.enabled = false;
+        _sousaCanvas.enabled = false;
     }
 
     public void OpenSousaCanvas()
